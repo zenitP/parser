@@ -14,7 +14,7 @@
  <body>
    <span>Показать товары, у которых</span>
    <select name="sel1" class="sel1">
-    <option value="1" name="1" class="1">Розничная цена</option> <!-- без параметра value передаются значения "розничная цена" и "оптовая цена" в ajax -->
+    <option value="1" name="1" class="1">Розничная цена</option> 
      <option value="2"name="2" class="2">Оптовая цена</option>
    </select>
     <span>от</span>
@@ -75,17 +75,6 @@
         $("button.submit").prop("disabled", false)
     });
 
-          /* $("button.submit").prop("disabled", true);
-            var otValue = $('input.ott').val();
-            var doValue = $('input.doo').val();
-                  .done(function(){
-
-                      $("#msg").html( " Address of Roll no " +doValue +" is "+result );
-                      //$("#msg").html( " Address of Roll no " +doValue +" is "+result );
-                    //var myArray = ["Джек", "Сойер", "Джон", "Дезмонд"];
-                    //console.log(myArray[0]);
-                    alert("Success: ");
-                  });*/
     });
 
   </script>
