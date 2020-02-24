@@ -2,7 +2,7 @@
 
 require_once 'data_to_connect.php';
 
-$loadfile = $_POST['upload_file']; // получаем имя загруженного файла
+$loadfile = $_POST['upload_file']; 
 if(empty($loadfile)){
 	 echo "Выберите пожалуйста, файл!";
 	 exit;
@@ -11,7 +11,6 @@ if(empty($loadfile)){
 	exit;
 }
 
-	//mysqli_set_charset($link, 'utf8');
 
 	$sql = "SELECT * FROM pList LIMIT 1";
 	if($conn->query($sql)){
@@ -39,25 +38,25 @@ if(empty($loadfile)){
 	    echo "Error creating table: " . $conn->error;
 	}
 
-	require_once "PHPExcel/Classes/PHPExcel/IOFactory.php"; // подключаем класс для доступа к файлу
+	require_once "PHPExcel/Classes/PHPExcel/IOFactory.php"; 
 
 	$objPHPExcel = PHPExcel_IOFactory::load($loadfile);
 
 
 
-	foreach ($objPHPExcel->getWorksheetIterator() as $worksheet) // цикл обходит страницы файла
+	foreach ($objPHPExcel->getWorksheetIterator() as $worksheet) 
 	{
-	  $highestRow = $worksheet->getHighestRow(); // получаем количество строк
-	  $highestColumn = $worksheet->getHighestColumn(); // а так можно получить количество колонок
+	  $highestRow = $worksheet->getHighestRow(); 
+	  $highestColumn = $worksheet->getHighestColumn(); 
 
-	  for ($row = 1; $row <= $highestRow; ++ $row) // обходим все строки
+	  for ($row = 1; $row <= $highestRow; ++ $row) 
 	  {
-	    $cell1 = $worksheet->getCellByColumnAndRow(0, $row); //наименование товара
-	    $cell2 = $worksheet->getCellByColumnAndRow(1, $row); //стоимость, руб
-	    $cell3 = $worksheet->getCellByColumnAndRow(2, $row); //стоимость опт, руб
-	    $cell4 = $worksheet->getCellByColumnAndRow(3, $row); //наличие на складе 1, шт.
-	    $cell5 = $worksheet->getCellByColumnAndRow(4, $row); //наличие на складе 2, шт.
-	    $cell6 = $worksheet->getCellByColumnAndRow(5, $row); //страна производства
+	    $cell1 = $worksheet->getCellByColumnAndRow(0, $row); 
+	    $cell2 = $worksheet->getCellByColumnAndRow(1, $row); 
+	    $cell3 = $worksheet->getCellByColumnAndRow(2, $row); 
+	    $cell4 = $worksheet->getCellByColumnAndRow(3, $row); 
+	    $cell5 = $worksheet->getCellByColumnAndRow(4, $row); 
+	    $cell6 = $worksheet->getCellByColumnAndRow(5, $row); 
 
 
 	$sql = "INSERT INTO pList (`Name_of_product`,`Cost_rub`,`Wholesale_cost_rub`,`Stock_quantity_1_pcs`,`Stock_quantity_2_pcs`,`Country_of_Origin`) VALUES
@@ -72,7 +71,7 @@ if(empty($loadfile)){
 
 	  }
 	}
-	echo "<a href='http://localhost/brainforce/index.html'>Вернуться на главную страницу</a>";
+	echo "<a href='http://localhost/brainforce/index.html'>Вернуться на главную страницу</a>"; //link regarding my project location
 
 $conn->close();
 
