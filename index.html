@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+ <head>
+   <title>Парсер</title>
+
+   <meta http-equiv="Content-Type" charset="utf-8">
+ </head>
+ <body>
+
+	<label>Выберите файл pricelist.xls!</label>
+
+	<form action="connection.php" method="POST">
+		<input type="file" name="upload_file" class="js-file"/>
+     		<input name="pars" type="submit" value="Спарсить файл (в бд)" />
+	</form>
+</br>
+  <form action="view.php" method="POST">
+        <input name="view" type="submit" value="Перейти к выгрузке данных (из бд)"/>
+	</form>
+
+ </body>
+</html>

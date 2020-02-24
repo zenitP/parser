@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+ <head>
+   <title>Просмотр бд</title>
+   <script
+      src="https://code.jquery.com/jquery-3.4.1.min.js"
+      integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+      crossorigin="anonymous"></script>
+
+   <meta http-equiv="Content-Type" charset="utf-8">
+      <!--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+-->
+ </head>
+ <body>
+   <span>Показать товары, у которых</span>
+   <select name="sel1" class="sel1">
+    <option value="1" name="1" class="1">Розничная цена</option> <!-- без параметра value передаются значения "розничная цена" и "оптовая цена" в ajax -->
+     <option value="2"name="2" class="2">Оптовая цена</option>
+   </select>
+    <span>от</span>
+    <input type="text" name="ott" class="ott" size="10" value="1000"/>
+    <span>до</span>
+    <input type="text" name="doo" class="doo" size="10" value="3000"/>
+    <span>рублей и на складе</span>
+    <select name="sel2" class="sel2">
+     <option value="1">Более</option>
+      <option value="2">Менее</option>
+    </select>
+    <input type="text" name="cout" class="cout"  size="4" value="20"/>
+    <span>штук.</span>
+   <button class="submit" onClick = "getdetails()">Показать товары</button> <!--disabled-->
+
+<div id="msg"></div>
+
+<script>
+  function getdetails(){
+    $("button.submit").prop("disabled", true);
+
+    var valSel1 = $('select.sel1').val();
+    var valOtt= $('input.ott').val();
+    var valDoo = $('input.doo').val();
+    var valSel2 = $('select.sel2').val();
+    var valCout= $('input.cout').val();
+
+          $.ajax({
+            type: "POST",
+            url: "refresh.php",
+            data: {fsel1:valSel1, fott:valOtt, fdoo:valDoo, fsel2:valSel2, fcout:valCout}
+          }).done(function( result )
+            {
+                $("#msg").html(result );
+            });
+          }
+</script>
+
+ <script >
+     $(document).ready(function(){
+       $('.sel1').change(function(){
+         $("button.submit").prop("disabled", false)
+    });
+
+    $('.sel2').change(function(){
+        $("button.submit").prop("disabled", false)
+    });
+
+    $('.ott').change(function(){
+        $("button.submit").prop("disabled", false)
+    });
+
+    $('.doo').change(function(){
+        $("button.submit").prop("disabled", false)
+    });
+
+    $('.cout').change(function(){
+        $("button.submit").prop("disabled", false)
+    });
+
+          /* $("button.submit").prop("disabled", true);
+            var otValue = $('input.ott').val();
+            var doValue = $('input.doo').val();
+                  .done(function(){
+
+                      $("#msg").html( " Address of Roll no " +doValue +" is "+result );
+                      //$("#msg").html( " Address of Roll no " +doValue +" is "+result );
+                    //var myArray = ["Джек", "Сойер", "Джон", "Дезмонд"];
+                    //console.log(myArray[0]);
+                    alert("Success: ");
+                  });*/
+    });
+
+  </script>
+ </body>
+</html>
