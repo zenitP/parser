@@ -7,24 +7,21 @@
 	$avgOpt=0;
 	$cont=0;
 
-	$sel1 = $_POST['fsel1'];// вернёт первый или второй
+	$sel1 = $_POST['fsel1'];
 	$ott = $_POST['fott'];
 	$doo = $_POST['fdoo'];
 	$sel2 = $_POST['fsel2'];
 	$cout = $_POST['fcout'];
 
-	//-1 OR 1=1
-	//Альтернатива (подготовленные запросы prepare)PDO
+	//-1 OR 1=1 injection
+	//alternative PDO
 	//$id = (int) $_GET['id'];
 	if ((!is_numeric($_POST['fott']))||(!is_numeric($_POST['fdoo']))||(!is_numeric($_POST['fcout']))) {
 		echo "</br>Проверьте корректность заполнения полей!"; exit;
 	}else if($ott<0||$doo<0||$cout<0){
 		echo "</br>Числа должны быть больше нуля!";
 			exit;
-	}/*else if($cout<=1 || $cout >=100){
-		echo "</br>Слишком малое или слишком большое число!";
-		exit;
-	}*/else if($ott > $doo){
+	}else if($ott > $doo){
 		echo "</br>Значение розничной цены больше оптовой!";
 		exit;
 	}
@@ -38,11 +35,6 @@
 	$result = $conn->query($sql);
 	$minCost = mysqli_fetch_row($result)[0];
 
-
-	//echo $sel1 ." ".$ott. " ". $doo ." ".$sel2. " ". $cout;
-
-
-//select
 	if($sel1 == 1){
 		if($sel2==1){
 			$sql = "SELECT * FROM pList WHERE (Cost_rub BETWEEN $ott AND $doo) and (Stock_quantity_1_pcs>$cout OR Stock_quantity_2_pcs>$cout)";
@@ -56,8 +48,6 @@
 			}
 	}
 
-		//$sql = "select * from pList where Stock_quantity_1_pcs>$cout OR Stock_quantity_2_pcs>$cout";
-
 
 	$result = $conn->query($sql);
 
@@ -65,7 +55,6 @@
 
 	    echo "<table border='1'><tr><th>id</th><th>Наименование товара</th><th>Стоимость, руб.</th><th>Стоимость опт, руб.</th><th>Наличие на складе 1, шт.</th><th>Наличие на складе 2, шт.</th><th>Страна производства</th><th>Примечание</th></tr>";
 
-	// output data of each row
 	while($row = $result->fetch_assoc()) {
 	$i=0; $k=false;
 
@@ -126,7 +115,7 @@
 if($cont!=NULL){
 	echo "Средняя стоимость оптовой цены товара: " . round(($avgOpt/$cont),2);  echo "</br>";
 }
-	/*или
+	/*or
 	q1
 	$sql = "SELECT SUM(Wholesale_cost_rub) FROM pList";
 	q2
