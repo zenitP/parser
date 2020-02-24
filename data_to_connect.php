@@ -1,7 +1,7 @@
 <?php
-$host = "localhost"; // адрес сервера
-$database = "pricelist"; // имя базы данных
-$user = "root"; // имя пользователя
+$host = "localhost"; 
+$database = "pricelist"; 
+$user = "root"; 
 $password = "bypass";
 
 // Create connection
