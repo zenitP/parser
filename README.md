@@ -8,8 +8,12 @@ launch on Linux, if necessary, install packages
 2)service mysql start;
 
 3)mysql -p
+
 4)enter password
+
 5)all that is required is to create a database with the command: (create database pricelist);
+
 6)to make sure everything is done correctly, run the command (show databases;) and find the name of the database you just created
+
 7)download and unzip the archive to / var / www / html and run in the browser line, indicating the full path. For example: localhost / parser-master / index.html
 
